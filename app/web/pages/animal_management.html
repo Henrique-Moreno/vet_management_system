@@ -1,0 +1,90 @@
+<!-- web/pages/animal_management.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Animais</title>
+  <link rel="stylesheet" href="../css/styles.css"> <!-- Estilos globais -->
+  <link rel="stylesheet" href="../css/animal_management.css"> <!-- Estilos específicos -->
+</head>
+
+<body>
+  <div class="container">
+    <h1>Gestão de Animais</h1>
+    <button id="addAnimalBtn" class="button">Adicionar Animal</button>
+
+    <div class="filter-container">
+      <input type="text" id="nameFilter" placeholder="Filtrar por nome">
+      <input type="text" id="speciesFilter" placeholder="Filtrar por espécie">
+      <input type="text" id="breedFilter" placeholder="Filtrar por raça">
+      <button id="filterBtn" class="button">Filtrar</button>
+    </div>
+
+    <table id="animalsTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Espécie</th>
+          <th>Raça</th>
+          <th>Sexo</th>
+          <th>Data de Nascimento</th>
+          <th>Peso (kg)</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="animalsBody">
+        <!-- Os animais serão inseridos aqui -->
+      </tbody>
+    </table>
+
+    <!-- Modal para adicionar/editar animal -->
+    <div id="animalModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Adicionar Animal</h2>
+        <form id="animalForm">
+          <input type="hidden" id="animalId">
+
+          <label for="animalName">Nome:</label>
+          <input type="text" id="animalName" required>
+
+          <label for="species">Espécie:</label>
+          <input type="text" id="species">
+
+          <label for="breed">Raça:</label>
+          <input type="text" id="breed">
+
+          <label for="gender">Sexo:</label>
+          <select id="gender">
+            <option value="">Selecione...</option>
+            <option value="Macho">Macho</option>
+            <option value="Fêmea">Fêmea</option>
+          </select>
+
+          <label for="birthDate">Data de Nascimento:</label>
+          <input type="date" id="birthDate">
+
+          <label for="weight">Peso (kg):</label>
+          <input type="number" id="weight" step="0.01">
+
+          <label for="farmId">ID da Fazenda:</label>
+          <input type="number" id="farmId">
+
+          <label for="healthHistory">Histórico de Saúde:</label>
+          <textarea id="healthHistory"></textarea>
+
+          <!-- Botão para salvar -->
+          <button type="submit" class="button">Salvar</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../js/animal_management.js"></script>
+</body>
+
+</html>

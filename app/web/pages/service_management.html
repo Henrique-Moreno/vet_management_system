@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema ERP para Gestão Veterinária</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/service_management.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Gestão de Serviços</h1>
+    <button id="addServiceBtn" class="button">Adicionar Serviço</button>
+
+    <div class="filter-container">
+      <input type="text" id="serviceTypeFilter" placeholder="Filtrar por tipo de serviço">
+      <input type="text" id="veterinarianFilter" placeholder="Filtrar por veterinário">
+      <input type="date" id="startDateFilter" placeholder="Data Inicial">
+      <input type="date" id="endDateFilter" placeholder="Data Final">
+      <button id="filterBtn" class="button">Filtrar</button>
+    </div>
+
+    <table id="servicesTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tipo de Serviço</th>
+          <th>Data do Serviço</th>
+          <th>Animal ID</th>
+          <th>Fazenda ID</th>
+          <th>Veterinário</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="servicesBody">
+        <!-- Os serviços serão inseridos aqui -->
+      </tbody>
+    </table>
+
+    <div id="serviceModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Adicionar Serviço</h2>
+        <form id="serviceForm">
+          <input type="hidden" id="serviceId">
+
+          <label for="serviceType">Tipo de Serviço:</label>
+          <input type="text" id="serviceType" required>
+
+          <label for="serviceDate">Data do Serviço:</label>
+          <input type="date" id="serviceDate" required>
+
+          <label for="animalId">ID do Animal:</label>
+          <input type="number" id="animalId" required>
+
+          <label for="farmId">ID da Fazenda:</label>
+          <input type="number" id="farmId" required>
+
+          <label for="veterinarianName">Nome do Veterinário:</label>
+          <input type="text" id="veterinarianName" required>
+
+          <label for="description">Descrição:</label>
+          <textarea id="description"></textarea>
+
+          <button type="submit" class="button">Salvar</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../js/service_management.js"></script>
+</body>
+
+</html>
