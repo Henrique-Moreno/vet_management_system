@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Animais</title>
+  <link rel="stylesheet" href="../css/animal.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="logo">Sistema ERP para Gestão Veterinária</div>
+    <nav class="nav">
+      <a href="./dashboard.html" class="nav-link">Painel</a>
+      <button id="logoutButton" class="logout-button">Sair</button>
+    </nav>
+  </header>
+
+  <span>
+    <h1>Gerenciamento de Animais</h1>
+  </span>
+
+  <main class="container">
+    <section id="createSection">
+      <h2>Cadastrar Novo Animal</h2>
+      <form id="createAnimalForm">
+        <label for="createName">Nome do Animal:</label>
+        <input type="text" id="createName" name="name" required>
+
+        <label for="createSpecies">Espécie:</label>
+        <input type="text" id="createSpecies" name="species" required>
+
+        <label for="createBreed">Raça:</label>
+        <input type="text" id="createBreed" name="breed">
+
+        <label for="createGender">Sexo:</label>
+        <select id="createGender" name="gender" required>
+          <option value="">Selecione</option>
+          <option value="Macho">Macho</option>
+          <option value="Fêmea">Fêmea</option>
+        </select>
+
+        <label for="createBirthDate">Data de Nascimento:</label>
+        <input type="date" id="createBirthDate" name="birth_date">
+
+        <label for="createWeight">Peso (kg):</label>
+        <input type="number" id="createWeight" name="weight">
+
+        <label for="createFarmId">ID da Fazenda:</label>
+        <input type="number" id="createFarmId" name="farm_id">
+
+        <button type="submit">Cadastrar Animal</button>
+      </form>
+
+      <div id="createResponseMessage"></div>
+    </section>
+
+    <section id="tableSection">
+      <h2>Animais Cadastrados</h2>
+      <table id="animalsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Espécie</th>
+            <th>Raça</th>
+            <th>Sexo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody> <!-- Corpo da tabela onde os dados serão inseridos -->
+      </table>
+    </section>
+
+    <!-- Formulário para Editar Animal -->
+    <section id="editSection">
+      <h2>Editar Animal</h2>
+      <form id="editAnimalForm">
+        <input type="hidden" id="editAnimalId" name="id">
+
+        <label for="editName">Nome do Animal:</label>
+        <input type="text" id="editName" name="name" required>
+
+        <label for="editSpecies">Espécie:</label>
+        <input type="text" id="editSpecies" name="species" required>
+
+        <label for="editBreed">Raça:</label>
+        <input type="text" id="editBreed" name="breed">
+
+        <label for="editGender">Sexo:</label>
+        <select id="editGender" name="gender" required>
+          <option value="">Selecione</option>
+          <option value="Macho">Macho</option>
+          <option value="Fêmea">Fêmea</option>
+        </select>
+
+        <label for="editBirthDate">Data de Nascimento:</label>
+        <input type="date" id="editBirthDate" name="birth_date">
+
+        <label for="editWeight">Peso (kg):</label>
+        <input type="number" id="editWeight" name="weight">
+
+        <label for="editFarmId">ID da Fazenda:</label>
+        <input type="number" id="editFarmId" name="farm_id">
+
+        <button type="submit">Salvar Alterações</button>
+      </form>
+
+      <div id="editResponseMessage"></div>
+    </section>
+
+    <section id="filterSection">
+      <h2>Filtrar Informações de Animais</h2>
+      <form id="filterForm">
+        <label for="filterCriteria">Filtrar por:</label>
+        <select id="filterCriteria">
+          <option value="">Selecione</option>
+          <option value="familyTree">Árvore Genealógica</option>
+          <option value="animalsByFarm">Animais por Fazenda</option>
+          <option value="reproductiveHistory">Histórico Reprodutivo</option>
+        </select>
+
+        <!-- Espaço para inputs dinâmicos -->
+        <div id="filterInputs"></div>
+
+        <button type="submit">Filtrar</button>
+      </form>
+
+      <!-- Resultados do filtro -->
+      <div id="filterResults"></div>
+    </section>
+  </main>
+
+  <script src="../js/animal_management.js"></script>
+  <script src="../js/logout.js"></script>
+
+</body>
+
+</html>

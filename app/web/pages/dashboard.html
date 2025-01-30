@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Sistema ERP para Gestão Veterinária</title>
-    <link rel="stylesheet" href="../css/styles.css"> 
-    <link rel="stylesheet" href="../css/dashboard.css"> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Sistema ERP para Gestão Veterinária</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>Bem-vindo ao Painel</h1>
-        <p>Escolha uma das opções abaixo para continuar:</p>
-        <div class="button-container">
-            <a href="./farm_management.html" class="button">Gestão da Fazenda</a>
-            <a href="./animal_management.html" class="button">Gestão de Animais</a>
-            <a href="./service_management.html" class="button">Gestão de Serviços</a>
-            <a href="./financial_management.html" class="button">Gestão Financeira</a>
-        </div>
+  <header class="header">
+    <div class="logo">Sistema ERP para Gestão Veterinária</div>
+    <nav class="nav">
+      <a href="./dashboard.html" class="nav-link">Painel</a>
+      <button id="logoutButton" class="logout-button">Sair</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Bem-vindo ao Painel</h1>
+    <p>Escolha uma das opções abaixo para continuar:</p>
+    <div class="button-container">
+      <a href="./farm.html" class="button">Gestão da Fazenda</a>
+      <a href="./animal.html" class="button">Gestão de Animais</a>
+      <a href="./service.html" class="button">Gestão de Serviços</a>
+      <a href="./financial.html" class="button">Gestão Financeira</a>
     </div>
+  </div>
 </body>
+
+<script src="../js/logout.js"></script>
+
 </html>

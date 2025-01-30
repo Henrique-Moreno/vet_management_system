@@ -11,7 +11,6 @@ class Service(db.Model):
     veterinarian_name = db.Column(db.String(90), nullable=False)  # Nome do veterinário responsável
     description = db.Column(db.Text)  # Descrição detalhada do serviço
 
-    # Relacionamentos
     animal = db.relationship('Animal', backref='services')
     farm = db.relationship('Farm', backref='services')  # Relacionamento com a fazenda
 

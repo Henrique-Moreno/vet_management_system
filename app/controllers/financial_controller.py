@@ -7,7 +7,7 @@ class FinancialController:
     @staticmethod
     def create_transaction():
         """Cria uma nova transação financeira."""
-        data = request.get_json()  # Obtém os dados JSON da requisição
+        data = request.get_json()  
         
         if not data or 'description' not in data:
             return jsonify({"error": "Descrição da transação é obrigatória."}), 400
@@ -22,12 +22,12 @@ class FinancialController:
             return jsonify({"error": "O ID da fazenda (farm_id) é obrigatório."}), 400
 
         # Verifica se a fazenda existe
-        farm = Farm.query.get(data['farm_id'])
+        farm = db.session.get(Farm, data['farm_id'])
         if not farm:
             return jsonify({"error": f"Fazenda com ID {data['farm_id']} não encontrada."}), 404
 
         try:
-            new_transaction = FinancialTransaction(**data)  # Cria uma nova instância do modelo FinancialTransaction
+            new_transaction = FinancialTransaction(**data)  # Cria uma nova transação
             db.session.add(new_transaction)  # Adiciona ao banco de dados
             db.session.commit()  # Salva as alterações
 
@@ -51,7 +51,7 @@ class FinancialController:
     def get_transaction(transaction_id):
         """Retorna uma transação específica pelo ID."""
         try:
-            transaction = FinancialTransaction.query.get(transaction_id)  # Busca a transação pelo ID
+            transaction = db.session.get(FinancialTransaction, transaction_id)  # Busca a transação pelo ID
 
             if transaction is None:
                 return jsonify({"error": "Transação não encontrada."}), 404
@@ -67,13 +67,14 @@ class FinancialController:
         data = request.get_json()  # Obtém os novos dados da requisição
         
         try:
-            transaction = FinancialTransaction.query.get(transaction_id)  # Busca a transação pelo ID
+            transaction = db.session.get(FinancialTransaction, transaction_id)  # Busca a transação pelo ID
 
             if transaction is None:
                 return jsonify({"error": "Transação não encontrada."}), 404
 
+            # Atualiza cada atributo da transação com os dados fornecidos
             for key, value in data.items():
-                setattr(transaction, key, value)  # Atualiza cada atributo da transação
+                setattr(transaction, key, value)  
 
             db.session.commit()  # Comita as alterações no banco de dados
             return jsonify(transaction.to_dict()), 200
@@ -86,7 +87,7 @@ class FinancialController:
     def delete_transaction(transaction_id):
         """Remove uma transação do banco de dados."""
         try:
-            transaction = FinancialTransaction.query.get(transaction_id)  # Busca a transação pelo ID
+            transaction = db.session.get(FinancialTransaction, transaction_id)  # Busca a transação pelo ID
 
             if transaction is None:
                 return jsonify({"error": "Transação não encontrada."}), 404
@@ -96,7 +97,7 @@ class FinancialController:
             return jsonify({"message": "Transação excluída com sucesso."}), 200
             
         except Exception as e:
-            db.session.rollback()  # Reverte alterações em caso de erro
+            db.session.rollback()  
             return jsonify({"error": str(e)}), 500
     
     @staticmethod

@@ -16,7 +16,7 @@ class ServiceController:
             return jsonify({"error": "O ID do animal (animal_id) é obrigatório."}), 400
 
         # Verifica se o animal existe
-        animal = Animal.query.get(data['animal_id'])
+        animal = db.session.get(Animal, data['animal_id'])
         if not animal:
             return jsonify({"error": f"Animal com ID {data['animal_id']} não encontrado."}), 404
 
@@ -45,7 +45,7 @@ class ServiceController:
     def get_service(service_id):
         """Retorna um serviço específico pelo ID."""
         try:
-            service = Service.query.get(service_id)  # Busca o serviço pelo ID
+            service = db.session.get(Service, service_id)  # Busca o serviço pelo ID
 
             if service is None:
                 return jsonify({"error": "Serviço não encontrado."}), 404
@@ -61,13 +61,14 @@ class ServiceController:
         data = request.get_json()  # Obtém os novos dados da requisição
         
         try:
-            service = Service.query.get(service_id)  # Busca o serviço pelo ID
+            service = db.session.get(Service, service_id)  # Busca o serviço pelo ID
 
             if service is None:
                 return jsonify({"error": "Serviço não encontrado."}), 404
 
+            # Atualiza cada atributo do serviço com os dados fornecidos
             for key, value in data.items():
-                setattr(service, key, value)  # Atualiza cada atributo do serviço
+                setattr(service, key, value)  
 
             db.session.commit()  # Comita as alterações no banco de dados
             return jsonify(service.to_dict()), 200
@@ -80,7 +81,7 @@ class ServiceController:
     def delete_service(service_id):
         """Remove um serviço do banco de dados."""
         try:
-            service = Service.query.get(service_id)  # Busca o serviço pelo ID
+            service = db.session.get(Service, service_id)  # Busca o serviço pelo ID
 
             if service is None:
                 return jsonify({"error": "Serviço não encontrado."}), 404
@@ -129,6 +130,6 @@ class ServiceController:
         try:
             services = Service.query.filter(Service.service_date.between(start_date, end_date)).all()
             return jsonify([service.to_dict() for service in services]), 200
+            
         except Exception as e:
             return jsonify({"error": str(e)}), 500
-

@@ -19,7 +19,6 @@ class AdminController:
         if existing_admin:
             return jsonify({"error": "Nome de usuário já está em uso."}), 400
         
-        # Atualizado para usar pbkdf2:sha256
         hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
         
         new_admin = Admin(username=data['username'], password=hashed_password)
@@ -38,6 +37,9 @@ class AdminController:
         """Realiza o login do administrador."""
         data = request.get_json()
         
+        if not data or 'username' not in data or 'password' not in data:
+            return jsonify({"error": "Nome de usuário e senha são obrigatórios."}), 400
+
         admin = Admin.query.filter_by(username=data['username']).first()
         
         if admin and check_password_hash(admin.password, data['password']):
@@ -59,4 +61,3 @@ class AdminController:
             return jsonify({"username": current_user.username}), 200
         
         return jsonify({"error": "Nenhum administrador autenticado."}), 401
-        

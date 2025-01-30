@@ -16,18 +16,18 @@ class AnimalController:
             return jsonify({"error": "O ID da fazenda (farm_id) é obrigatório."}), 400
         
         # Verifica se a fazenda existe
-        farm = Farm.query.get(data["farm_id"])
+        farm = db.session.get(Farm, data["farm_id"])
         if not farm:
             return jsonify({"error": f"Fazenda com ID {data['farm_id']} não encontrada."}), 404
 
         # Valida se father_id e mother_id existem
         if 'father_id' in data and data['father_id'] is not None:
-            father = Animal.query.get(data['father_id'])
+            father = db.session.get(Animal, data['father_id'])
             if not father:
                 return jsonify({"error": f"Animal com ID {data['father_id']} (pai) não encontrado."}), 404
 
         if 'mother_id' in data and data['mother_id'] is not None:
-            mother = Animal.query.get(data['mother_id'])
+            mother = db.session.get(Animal, data['mother_id'])
             if not mother:
                 return jsonify({"error": f"Animal com ID {data['mother_id']} (mãe) não encontrado."}), 404
 
@@ -57,7 +57,7 @@ class AnimalController:
     def get_animal(animal_id):
         """Retorna um animal específico pelo ID."""
         try:
-            animal = Animal.query.get(animal_id)  
+            animal = db.session.get(Animal, animal_id)  
 
             if animal is None:
                 return jsonify({"error": "Animal não encontrado."}), 404
@@ -73,11 +73,12 @@ class AnimalController:
         data = request.get_json()  
         
         try:
-            animal = Animal.query.get(animal_id)  
+            animal = db.session.get(Animal, animal_id)  
 
             if animal is None:
                 return jsonify({"error": "Animal não encontrado."}), 404
 
+            # Atualiza cada atributo do animal com os dados fornecidos
             for key, value in data.items():
                 setattr(animal, key, value)  
 
@@ -92,7 +93,7 @@ class AnimalController:
     def delete_animal(animal_id):
         """Remove um animal do banco de dados."""
         try:
-            animal = Animal.query.get(animal_id)  
+            animal = db.session.get(Animal, animal_id)  
 
             if animal is None:
                 return jsonify({"error": "Animal não encontrado."}), 404
@@ -108,7 +109,7 @@ class AnimalController:
     @staticmethod
     def get_family_tree(animal_id):
         """Retorna a árvore genealógica de um animal específico."""
-        animal = Animal.query.get(animal_id)
+        animal = db.session.get(Animal, animal_id)
         
         if not animal:
             return jsonify({"error": "Animal não encontrado."}), 404
@@ -131,7 +132,7 @@ class AnimalController:
     def get_reproductive_history(animal_id):
         """Retorna o histórico reprodutivo de um animal específico."""
         try:
-            animal = Animal.query.get(animal_id)
+            animal = db.session.get(Animal, animal_id)
             if not animal:
                 return jsonify({"error": "Animal não encontrado."}), 404
             

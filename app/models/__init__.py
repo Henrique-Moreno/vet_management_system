@@ -1,6 +1,5 @@
-from app import db  # Importa a instância global do SQLAlchemy
+from app import db  
 
-# Aqui você pode importar todos os modelos, por exemplo:
 from app.models.farm import Farm
 
 from app.models.animal import Animal

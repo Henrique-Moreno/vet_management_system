@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Fazendas</title>
+  <link rel="stylesheet" href="../css/farm.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo">Sistema ERP para Gestão Veterinária</div>
+    <nav class="nav">
+      <a href="./dashboard.html" class="nav-link">Painel</a>
+      <button id="logoutButton" class="logout-button">Sair</button>
+    </nav>
+  </header>
+
+  <span>
+    <h1>Gerenciamento de Fazendas</h1>
+  </span>
+
+  <main class="container">
+    <section id="createSection">
+      <h2>Cadastrar Nova Fazenda</h2>
+      <form id="createFarmForm">
+        <label for="createName">Nome da Fazenda:</label>
+        <input type="text" id="createName" name="name" required>
+
+        <label for="createLocation">Localização:</label>
+        <input type="text" id="createLocation" name="location" required>
+
+        <label for="createOwnerName">Nome do Proprietário:</label>
+        <input type="text" id="createOwnerName" name="owner_name" required>
+
+        <label for="createOwnerPhone">Telefone do Proprietário:</label>
+        <input type="tel" id="createOwnerPhone" name="owner_phone" required>
+
+        <label for="createOwnerEmail">E-mail do Proprietário:</label>
+        <input type="email" id="createOwnerEmail" name="owner_email" required>
+
+        <label for="createObservations">Observações:</label>
+        <textarea id="createObservations" name="observations"></textarea>
+
+        <button type="submit">Cadastrar Fazenda</button>
+      </form>
+
+      <div id="createResponseMessage"></div>
+    </section>
+
+    <section id="filterSection">
+      <h2>Filtrar por nome, proprietário e localização</h2>
+      <form id="filterFarmForm">
+        <label for="filterName">Nome da Fazenda:</label>
+        <input type="text" id="filterName" name="name">
+
+        <label for="filterOwner">Nome do Proprietário:</label>
+        <input type="text" id="filterOwner" name="owner">
+
+        <label for="filterLocation">Localização:</label>
+        <input type="text" id="filterLocation" name="location">
+
+        <button type="submit">Filtrar</button>
+      </form>
+    </section>
+
+    <!-- Tabela de Fazendas -->
+    <section id="tableSection">
+      <h2>Fazendas Cadastradas</h2>
+      <table id="farmsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Localização</th>
+            <th>Proprietário</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody> <!-- Corpo da tabela onde os dados serão inseridos -->
+      </table>
+    </section>
+
+    <!-- Formulário para Editar Fazenda -->
+    <section id="editSection">
+      <h2>Editar Fazenda</h2>
+      <form id="editFarmForm">
+
+        <input type="hidden" id="editFarmId" name="id">
+
+        <label for="editName">Nome da Fazenda:</label>
+        <input type="text" id="editName" name="name" required>
+
+        <label for="editLocation">Localização:</label>
+        <input type="text" id="editLocation" name="location" required>
+
+        <label for="editOwnerName">Nome do Proprietário:</label>
+        <input type="text" id="editOwnerName" name="owner_name" required>
+
+        <label for="editOwnerPhone">Telefone do Proprietário:</label>
+        <input type="tel" id="editOwnerPhone" name="owner_phone" required>
+
+        <label for="editOwnerEmail">E-mail do Proprietário:</label>
+        <input type="email" id="editOwnerEmail" name="owner_email" required>
+
+        <label for="editObservations">Observações:</label>
+        <textarea id="editObservations" name="observations"></textarea>
+
+        <button type="submit">Salvar Alterações</button>
+      </form>
+
+      <div id="editResponseMessage"></div>
+    </section>
+  </main>
+
+  <!-- Link para o JavaScript -->
+  <script src="../js/farm_management.js"></script>
+  <script src="../js/logout.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento Financeiro</title>
+  <link rel="stylesheet" href="../css/financial.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="logo">Sistema ERP para Gestão Veterinária</div>
+    <nav class="nav">
+      <a href="./dashboard.html" class="nav-link">Painel</a>
+      <button id="logoutButton" class="logout-button">Sair</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Formulário para Criar Transação Financeira -->
+    <section id="createSection">
+      <h2>Cadastrar Nova Transação</h2>
+      <form id="createTransactionForm">
+        <label for="createDescription">Descrição:</label>
+        <input type="text" id="createDescription" name="description" required>
+
+        <label for="createAmount">Valor:</label>
+        <input type="number" id="createAmount" name="amount" required>
+
+        <label for="createTransactionType">Tipo de Transação:</label>
+        <select id="createTransactionType" name="transaction_type" required>
+          <option value="">Selecione</option>
+          <option value="receita">Receita</option>
+          <option value="despesa">Despesa</option>
+        </select>
+
+        <label for="createTransactionDate">Data da Transação:</label>
+        <input type="date" id="createTransactionDate" name="transaction_date" required>
+
+        <label for="createFarmId">ID da Fazenda:</label>
+        <input type="number" id="createFarmId" name="farm_id">
+
+        <button type="submit">Cadastrar Transação</button>
+      </form>
+
+      <div id="createResponseMessage"></div>
+    </section>
+
+    <!-- Formulário para Consultar Balanço Geral -->
+    <section id="balanceSection">
+      <h2>Consultar Balanço Geral</h2>
+      <form id="balanceForm">
+        <label for="balanceStartDate">Data Inicial:</label>
+        <input type="date" id="balanceStartDate" name="start_date" required>
+
+        <label for="balanceEndDate">Data Final:</label>
+        <input type="date" id="balanceEndDate" name="end_date" required>
+
+        <button type="submit">Consultar Balanço</button>
+      </form>
+
+      <div id="balanceResult">
+        <!-- Resultados do balanço aparecerão aqui -->
+      </div>
+    </section>
+
+    <!-- Tabela de Transações Financeiras -->
+    <section id="tableSection">
+      <h2>Transações Cadastradas</h2>
+      <table id="transactionsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Tipo</th>
+            <th>Data</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody> <!-- Corpo da tabela onde os dados serão inseridos -->
+      </table>
+    </section>
+
+    <!-- Formulário para Editar Transação Financeira -->
+    <section id="editSection">
+      <h2>Editar Transação</h2>
+      <form id="editTransactionForm">
+        <input type='hidden' id='editTransactionId' name='id'>
+
+        <label for='editDescription'>Descrição:</label>
+        <input type='text' id='editDescription' name='description' required>
+
+        <label for='editAmount'>Valor:</label>
+        <input type='number' id='editAmount' name='amount' required>
+
+        <label for='editTransactionType'>Tipo de Transação:</label>
+        <select id='editTransactionType' name='transaction_type' required>
+          <option value=''>Selecione</option>
+          <option value='receita'>Receita </option>
+          <option value='despesa'>Despesa </option>
+        </select>
+
+        <label for='editTransactionDate'>Data da Transação:</label>
+        <input type='date' id='editTransactionDate' name='transaction_date' required>
+
+        <label for='editFarmId'>ID da Fazenda:</label>
+        <input type='number' id='editFarmId' name='farm_id'>
+
+        <button type='submit'>Salvar Alterações </button>
+      </form>
+
+      <div id='editResponseMessage'></div>
+    </section>
+
+    <!-- Novo Formulário para Selecionar Funcionalidade e Input Dinâmico -->
+    <section id='dynamicFilterSection'>
+      <h2>Filtrar Informações</h2>
+      <form id='dynamicFilterForm'>
+        <label for='filterOption'>Selecione a Funcionalidade :</label>
+        <select id='filterOption' name='filter_option' required onchange="updateDynamicInput()">
+          <option value='' disabled selected>Selecione </option>
+          <option value='summary/farm'>Resumo por Fazenda </option>
+          <option value='farm'>Informações da Fazenda </option>
+          <option value='transaction'>Informações da Transação </option>
+        </select>
+
+        <div id='dynamicInputContainer'>
+          <!-- Input dinâmico será inserido aqui -->
+        </div>
+
+        <button type='submit'>Filtrar </button>
+      </form>
+
+      <div id='filterResult'>
+        <!-- Resultados do filtro aparecerão aqui -->
+      </div>
+    </section>
+
+  </main>
+
+  <script src='../js/financial_management.js'></script>
+  <script src='../js/logout.js'></script>
+</body>
+
+</html>

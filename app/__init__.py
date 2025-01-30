@@ -15,8 +15,11 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    # Habilita CORS globalmente com suporte a credenciais
-    CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5500"}}, 
+    # Remove a barra final das URLs
+    app.url_map.strict_slashes = False
+
+    # Habilita CORS globalmente para todos os domínios
+    CORS(app, resources={r"/*": {"origins": "*"}},  # Permite todos os domínios
          supports_credentials=True, 
          allow_headers=["Content-Type", "Authorization"],
          methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])

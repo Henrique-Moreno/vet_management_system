@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Serviços</title>
+  <link rel="stylesheet" href="../css/service.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo">Sistema ERP para Gestão Veterinária</div>
+    <nav class="nav">
+      <a href="./dashboard.html" class="nav-link">Painel</a>
+      <button id="logoutButton" class="logout-button">Sair</button>
+    </nav>
+  </header>
+
+  <span>
+    <h1>Gerenciamento de Serviços</h1>
+  </span>
+
+  <main class="container">
+    <!-- Cadastrar Novo Serviço -->
+    <section id="createSection">
+      <h2>Cadastrar Novo Serviço</h2>
+      <form id="createServiceForm">
+        <label for="createServiceType">Tipo de Serviço:</label>
+        <input type="text" id="createServiceType" name="service_type" required>
+
+        <label for="createServiceDate">Data do Serviço:</label>
+        <input type="date" id="createServiceDate" name="service_date" required>
+
+        <label for="createAnimalId">ID do Animal:</label>
+        <input type="number" id="createAnimalId" name="animal_id" required>
+
+        <label for="createFarmId">ID da Fazenda:</label>
+        <input type="number" id="createFarmId" name="farm_id" required>
+
+        <label for="createVeterinarianName">Nome do Veterinário:</label>
+        <input type="text" id="createVeterinarianName" name="veterinarian_name" required>
+
+        <label for="createDescription">Descrição:</label>
+        <textarea id="createDescription" name="description"></textarea>
+
+        <button type="submit">Cadastrar Serviço</button>
+      </form>
+
+      <div id="createResponseMessage"></div>
+    </section>
+
+    <!-- Filtrar Serviços -->
+    <section id="filterSection">
+      <h2>Filtrar Serviços</h2>
+      <form id="filterForm">
+        <label for="filterCriteria">Filtrar por:</label>
+        <select id="filterCriteria">
+          <option value="">Selecione</option>
+          <option value="animal">Animal</option>
+          <option value="farm">Fazenda</option>
+          <option value="dateRange">Intervalo de Datas</option>
+        </select>
+
+        <!-- Espaço para inputs dinâmicos -->
+        <div id="filterInputs"></div>
+
+        <button type="submit">Filtrar</button>
+      </form>
+
+      <!-- Resultados do filtro -->
+      <div id="filterResults"></div>
+    </section>
+
+    <!-- Tabela de Serviços Cadastrados -->
+    <section id="tableSection">
+      <h2>Serviços Cadastrados</h2>
+      <table id="servicesTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tipo de Serviço</th>
+            <th>Data do Serviço</th>
+            <th>Veterinário</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody> <!-- Corpo da tabela onde os dados serão inseridos -->
+      </table>
+    </section>
+
+    <!-- Editar Serviço -->
+    <section id="editSection">
+      <h2>Editar Serviço</h2>
+      <form id="editServiceForm">
+        <input type='hidden' id='editServiceId' name='id'>
+
+        <label for='editServiceType'>Tipo de Serviço:</label><input type='text' id='editServiceType' name='service_type'
+          required>
+
+        <label for='editServiceDate'>Data do Serviço:</label><input type='date' id='editServiceDate' name='service_date'
+          required>
+
+        <label for='editAnimalId'>ID do Animal:</label><input type='number' id='editAnimalId' name='animal_id' required>
+
+        <label for='editFarmId'>ID da Fazenda:</label><input type='number' id='editFarmId' name='farm_id' required>
+
+        <label for='editVeterinarianName'>Nome do Veterinário:</label><input type='text' id='editVeterinarianName'
+          name='veterinarian_name' required>
+
+        <label for='editDescription'>Descrição:</label><textarea id='editDescription' name='description'></textarea>
+
+        <button type='submit'>Salvar Alterações</button>
+      </form>
+
+      <!-- Mensagem de resposta ao editar -->
+      <div id='editResponseMessage'></div>
+    </section>
+
+  </main>
+
+  <script src="../js/service_management.js"></script>
+  <script src="../js/filter_management.js"></script>
+</body>
+
+</html>

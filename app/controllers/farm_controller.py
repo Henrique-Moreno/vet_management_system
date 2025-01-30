@@ -7,7 +7,7 @@ class FarmController:
     @staticmethod
     def create_farm():
         """Cria uma nova fazenda."""
-        data = request.get_json()  # Obtém os dados JSON da requisição
+        data = request.get_json()  
         
         # Verifica se o nome da fazenda é fornecido
         if not data or 'name' not in data:
@@ -16,13 +16,13 @@ class FarmController:
         try:
             # Cria uma nova instância do modelo Farm com os dados fornecidos
             new_farm = Farm(**data)
-            db.session.add(new_farm)  # Adiciona ao banco de dados
-            db.session.commit()  # Salva as alterações
+            db.session.add(new_farm)  
+            db.session.commit()  
 
             return jsonify(new_farm.to_dict()), 201
             
         except Exception as e:
-            db.session.rollback()  # Reverte alterações em caso de erro
+            db.session.rollback() 
             return jsonify({"error": str(e)}), 500
 
     @staticmethod
@@ -48,22 +48,21 @@ class FarmController:
                 farms_query = farms_query.filter_by(**filters)
 
             farms = farms_query.all()  # Obtém todas as fazendas filtradas
-            return jsonify([farm.to_dict() for farm in farms]), 200  # Converte cada fazenda para dicionário
+            return jsonify([farm.to_dict() for farm in farms]), 200  
             
         except Exception as e:
             return jsonify({"error": str(e)}), 500
-
 
     @staticmethod
     def get_farm(farm_id):
         """Retorna uma fazenda específica pelo ID."""
         try:
-            farm = Farm.query.get(farm_id)  # Busca a fazenda pelo ID
+            farm = db.session.get(Farm, farm_id)  
 
             if farm is None:
                 return jsonify({"error": "Fazenda não encontrada."}), 404
 
-            return jsonify(farm.to_dict()), 200  # Retorna a fazenda encontrada como JSON
+            return jsonify(farm.to_dict()), 200 
             
         except Exception as e:
             return jsonify({"error": str(e)}), 500
@@ -71,10 +70,10 @@ class FarmController:
     @staticmethod
     def update_farm(farm_id):
         """Atualiza os dados de uma fazenda existente."""
-        data = request.get_json()  # Obtém os novos dados da requisição
+        data = request.get_json()  
         
         try:
-            farm = Farm.query.get(farm_id)  # Busca a fazenda pelo ID
+            farm = db.session.get(Farm, farm_id)  
 
             if farm is None:
                 return jsonify({"error": "Fazenda não encontrada."}), 404
@@ -84,7 +83,7 @@ class FarmController:
                 setattr(farm, key, value)
 
             db.session.commit()  # Comita as alterações no banco de dados
-            return jsonify(farm.to_dict()), 200  # Retorna a fazenda atualizada como JSON
+            return jsonify(farm.to_dict()), 200  
             
         except Exception as e:
             db.session.rollback()  # Reverte alterações em caso de erro
@@ -94,13 +93,13 @@ class FarmController:
     def delete_farm(farm_id):
         """Remove uma fazenda do banco de dados."""
         try:
-            farm = Farm.query.get(farm_id)  # Busca a fazenda pelo ID
+            farm = db.session.get(Farm, farm_id)  
 
             if farm is None:
                 return jsonify({"error": "Fazenda não encontrada."}), 404
 
-            db.session.delete(farm)  # Remove a fazenda da sessão do banco de dados
-            db.session.commit()  # Comita as alterações no banco de dados
+            db.session.delete(farm)  
+            db.session.commit()  
             return jsonify({"message": "Fazenda excluída com sucesso."}), 200
             
         except Exception as e:
