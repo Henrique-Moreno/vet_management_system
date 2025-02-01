@@ -39,7 +39,8 @@ button {
   gap: 15px;
 }
 
-.nav-link, .logout-button {
+.nav-link,
+.logout-button {
   color: #fff;
   text-decoration: none;
   background: none;
@@ -49,7 +50,8 @@ button {
   transition: color 0.3s, background 0.3s;
 }
 
-.nav-link:hover, .logout-button:hover {
+.nav-link:hover,
+.logout-button:hover {
   color: #3498db;
 }
 

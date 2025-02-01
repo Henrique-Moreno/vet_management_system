@@ -9,7 +9,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-span h1{
+span h1 {
   margin: 30px 0;
   text-align: center;
 }
@@ -71,22 +71,20 @@ td button {
 }
 
 th {
-  background-color: #007bff; /* Cor do cabeçalho da tabela */
-  color: white; /* Cor do texto no cabeçalho */
+  background-color: #007bff;
+  color: white;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2; /* Cor de fundo para linhas pares */
+  background-color: #f2f2f2;
 }
 
-/* Estilo específico para a seção de filtro */
 #filterSection {
-    margin-bottom: 30px; /* Espaçamento inferior para a seção de filtro */
-    padding-bottom: 20px; /* Espaçamento interior inferior */
-    border-bottom: 1px solid #ddd; /* Linha separadora */
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
 }
 
-/* Estilo específico para a seção de edição */
 #editSection {
-    margin-top: 40px; /* Espaçamento superior para a seção de edição */
+  margin-top: 40px;
 }

@@ -147,7 +147,7 @@ dynamicFilterForm.addEventListener('submit', async function (event) {
     await fetchData("farm", farmId);
   } else if (selectedOption === 'transaction') {
     const transactionId = document.getElementById('filterTransactionId').value;
-    await fetchData("", transactionId); // "" porque a rota é `financial/{id}`
+    await fetchData("", transactionId);
   }
 });
 

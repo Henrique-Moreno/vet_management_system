@@ -5,7 +5,7 @@ def test_create_transaction(client):
         'amount': 1500.00,
         'transaction_type': 'receita',
         'transaction_date': '2025-01-26',
-        'farm_id': 2  # Certifique-se de que a fazenda com ID 1 existe
+        'farm_id': 1  # Certifique-se de que a fazenda com ID 1 existe
     }
 
     response = client.post('/financial/', json=transaction_data)
@@ -24,7 +24,7 @@ def test_get_transactions(client):
         'amount': 1500.00,
         'transaction_type': 'receita',
         'transaction_date': '2025-01-26',
-        'farm_id': 2  
+        'farm_id': 1  
     })
 
     # Agora, faça uma requisição GET para obter todas as transações

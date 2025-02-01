@@ -34,7 +34,7 @@ async function fetchFarms(filters = {}) {
 
 // Manipulador de evento para o formulário de filtro
 filterFarmForm.addEventListener('submit', async function (event) {
-  event.preventDefault(); 
+  event.preventDefault();
 
   const filters = {
     name: document.getElementById('filterName').value,
@@ -59,7 +59,7 @@ async function createFarm(data) {
     const result = await response.json();
     alert(`Fazenda criada com sucesso! ID: ${result.id}`);
 
-    fetchFarms(); 
+    fetchFarms();
   } catch (error) {
     alert(`Erro ao criar fazenda: ${error.message}`);
   }
@@ -78,7 +78,7 @@ async function editFarm(id, data) {
 
     alert('Fazenda editada com sucesso!');
 
-    fetchFarms(); 
+    fetchFarms();
   } catch (error) {
     alert(`Erro ao editar fazenda: ${error.message}`);
   }
@@ -94,7 +94,7 @@ async function loadEditForm(id) {
     const farm = await response.json();
 
     // Preenche o formulário de edição com os dados da fazenda
-    document.getElementById('editFarmId').value = farm.id; 
+    document.getElementById('editFarmId').value = farm.id;
     document.getElementById('editName').value = farm.name;
     document.getElementById('editLocation').value = farm.location;
     document.getElementById('editOwnerName').value = farm.owner_name;
@@ -117,7 +117,7 @@ async function deleteFarm(id) {
       if (!response.ok) throw new Error('Erro ao deletar fazenda.');
 
       alert('Fazenda deletada com sucesso!');
-      fetchFarms(); 
+      fetchFarms();
     } catch (error) {
       alert(`Erro ao deletar fazenda: ${error.message}`);
     }

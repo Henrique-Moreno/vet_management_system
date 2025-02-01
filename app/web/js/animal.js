@@ -1,5 +1,4 @@
 const createAnimalForm = document.getElementById('createAnimalForm');
-const editAnimalForm = document.getElementById('editAnimalForm');
 const animalsTableBody = document.querySelector('#animalsTable tbody');
 
 // Função para criar um animal
@@ -19,24 +18,6 @@ async function createAnimal(data) {
     return result;
   } catch (error) {
     alert(`Erro ao criar animal: ${error.message}`);
-  }
-}
-
-// Função para editar um animal
-async function editAnimal(id, data) {
-  try {
-    const response = await fetch(`http://localhost:8080/animals/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) throw new Error(`Erro ${response.status}: Não foi possível editar o animal.`);
-
-    alert('Animal editado com sucesso!');
-    fetchAnimals();
-  } catch (error) {
-    alert(`Erro ao editar animal: ${error.message}`);
   }
 }
 
@@ -66,47 +47,6 @@ async function fetchAnimals() {
     });
   } catch (error) {
     alert(`Erro ao buscar animais: ${error.message}`);
-  }
-}
-
-// Carrega dados no formulário de edição
-async function loadEditForm(id) {
-  try {
-    const response = await fetch(`http://localhost:8080/animals/${id}`);
-
-    if (!response.ok) throw new Error('Erro ao buscar dados do animal.');
-
-    const animal = await response.json();
-
-    // Preenche o formulário de edição com os dados do animal
-    document.getElementById('editAnimalId').value = animal.id;
-    document.getElementById('editName').value = animal.name;
-    document.getElementById('editSpecies').value = animal.species;
-    document.getElementById('editBreed').value = animal.breed;
-    document.getElementById('editGender').value = animal.gender;
-    document.getElementById('editBirthDate').value = animal.birth_date ? new Date(animal.birth_date).toISOString().split('T')[0] : ''; // Formato ISO
-    document.getElementById('editWeight').value = animal.weight;
-    document.getElementById('editFarmId').value = animal.farm_id;
-
-    window.scrollTo(0, document.getElementById('editSection').offsetTop); // Rola até o formulário de edição
-  } catch (error) {
-    alert(`Erro ao carregar dados do animal para edição: ${error.message}`);
-  }
-}
-
-// Função para deletar um animal
-async function deleteAnimal(id) {
-  if (confirm('Tem certeza que deseja deletar este animal?')) {
-    try {
-      const response = await fetch(`http://localhost:8080/animals/${id}`, { method: 'DELETE' });
-
-      if (!response.ok) throw new Error('Erro ao deletar animal.');
-
-      alert('Animal deletado com sucesso!');
-      fetchAnimals();
-    } catch (error) {
-      alert(`Erro ao deletar animal: ${error.message}`);
-    }
   }
 }
 
@@ -184,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (Array.isArray(data)) {
-      // Caso seja uma lista de animais (exemplo: animais por fazenda)
       const table = document.createElement("table");
       table.innerHTML = `
         <thead>
@@ -209,7 +148,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       filterResults.appendChild(table);
     } else if (data.father || data.mother || data.children) {
-      // Caso seja a árvore genealógica
       const familyTreeDiv = document.createElement("div");
       familyTreeDiv.innerHTML = `
         <h3>Árvore Genealógica</h3>
@@ -224,7 +162,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       filterResults.appendChild(familyTreeDiv);
     } else if (data.breeding_history || data.birth_history) {
-      // Caso seja o histórico reprodutivo
       const reproductiveHistoryDiv = document.createElement("div");
       reproductiveHistoryDiv.innerHTML = `
         <h3>Histórico Reprodutivo</h3>
@@ -244,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Manipuladores de evento
 createAnimalForm.addEventListener('submit', async function (event) {
   event.preventDefault();
 

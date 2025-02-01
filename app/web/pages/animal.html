@@ -57,6 +57,7 @@
       <div id="createResponseMessage"></div>
     </section>
 
+    <!-- Tabela de Animais Cadastrados -->
     <section id="tableSection">
       <h2>Animais Cadastrados</h2>
       <table id="animalsTable">
@@ -105,12 +106,47 @@
         <label for="editFarmId">ID da Fazenda:</label>
         <input type="number" id="editFarmId" name="farm_id">
 
-        <button type="submit">Salvar Alterações</button>
+        <label for="editHealthHistory">Histórico de Saúde:</label>
+        <textarea id="editHealthHistory" name="health_history"></textarea>
+
+        <label for="editFatherId">ID do Pai:</label>
+        <input type="number" id="editFatherId" name="father_id">
+
+        <label for="editMotherId">ID da Mãe:</label>
+        <input type="number" id="editMotherId" name="mother_id">
+
+        <label for="editPregnancyStatus">Status de Prenhez:</label>
+        <select id="editPregnancyStatus" name="pregnancy_status">
+          <option value="">Selecione</option>
+          <option value="false">Não Prenha</option>
+          <option value="true">Prenha</option>
+        </select>
+
+        <!-- Histórico de Cruzamentos -->
+        <h3>Histórico de Cruzamentos</h3>
+        <div id="breedingHistoryContainer">
+          <!-- Entradas de cruzamentos serão adicionadas aqui dinamicamente -->
+        </div>
+        <!-- Botão para adicionar cruzamento -->
+        <button class="button-history" type="button" onclick="addBreedingEntry()">Adicionar Cruzamento</button>
+
+        <!-- Histórico de Partos -->
+        <h3>Histórico de Partos</h3>
+        <div id="birthHistoryContainer">
+          <!-- Entradas de partos serão adicionadas aqui dinamicamente -->
+        </div>
+        <!-- Botão para adicionar parto -->
+        <button class="button-history" type="button" onclick="addBirthEntry()">Adicionar Parto</button>
+
+        <!-- Botão para salvar alterações -->
+        <button class="button-history" type="submit">Salvar Alterações</button>
       </form>
 
+      <!-- Mensagem de resposta -->
       <div id="editResponseMessage"></div>
     </section>
 
+    <!-- Seção de Filtros -->
     <section id="filterSection">
       <h2>Filtrar Informações de Animais</h2>
       <form id="filterForm">
@@ -133,7 +169,8 @@
     </section>
   </main>
 
-  <script src="../js/animal_management.js"></script>
+  <script src="../js/animal.js"></script>
+  <script src="../js/animalEdit.js" defer></script>
   <script src="../js/logout.js"></script>
 
 </body>

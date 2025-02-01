@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Manipulador de evento para o formulário de filtro
   filterForm.addEventListener("submit", async function (event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     const criteria = filterCriteria.value;
     let url = "";
@@ -100,8 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
             <td>${service.veterinarian_name}</td>
           </tr>`).join('')}
       </tbody>`;
-    
-   filterResults.appendChild(table);
+
+    filterResults.appendChild(table);
   }
 });
 
